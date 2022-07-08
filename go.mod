@@ -5,6 +5,7 @@ go 1.18
 require github.com/gin-gonic/gin v1.8.1
 
 require (
+	github.com/astaxie/beego v1.12.3 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-ini/ini v1.66.6 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
@@ -20,6 +21,7 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.2 // indirect
+	github.com/shiena/ansicolor v0.0.0-20200904210342-c7312218db18 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
 	github.com/unknwon/com v1.0.1 // indirect
 	golang.org/x/crypto v0.0.0-20220622213112-05595931fe9d // indirect
@@ -31,9 +33,9 @@ require (
 )
 
 replace (
-github.com/edwinhuish/go-gin-example/conf => ./conf
-github.com/edwinhuish/go-gin-example/middleware => ./middleware
-github.com/edwinhuish/go-gin-example/models => ./models
-github.com/edwinhuish/go-gin-example/pkg/setting => ./pkg/setting
-github.com/edwinhuish/go-gin-example/routers => ./routers
+	github.com/edwinhuish/go-gin-example/conf => ./conf
+	github.com/edwinhuish/go-gin-example/middleware => ./middleware
+	github.com/edwinhuish/go-gin-example/models => ./models
+	github.com/edwinhuish/go-gin-example/pkg/setting => ./pkg/setting
+	github.com/edwinhuish/go-gin-example/routers => ./routers
 )

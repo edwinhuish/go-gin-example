@@ -10,13 +10,10 @@ services:
       - SYS_PTRACE
     security_opt:
       - seccomp:unconfined
-    environment:
-      - PHP_INI_SCAN_DIR=:/php-conf.d
     volumes:
       - ..:/workspace:cached
       # Forwards the local Docker socket to the container.
       - /var/run/docker.sock:/var/run/docker-host.sock
-      - ./php/conf.d:/php-conf.d
       - ~/.ssh:/home/vscode/.ssh
       - ~/.gitconfig:/home/vscode/.gitconfig
     depends_on:

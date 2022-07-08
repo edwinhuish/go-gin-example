@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sleep infinity
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      - PHP_INI_SCAN_DIR=:/php-conf.d
+    volumes:
+      - ..:/workspace:cached
+      # Forwards the local Docker socket to the container.
+      - /var/run/docker.sock:/var/run/docker-host.sock
+      - ./php/conf.d:/php-conf.d
+      - ~/.ssh:/home/vscode/.ssh
+      - ~/.gitconfig:/home/vscode/.gitconfig
+    depends_on:
+      - db
+      # - redis
+
+  db:
+    build:
+      context: ./mysql
+      args:
+        - PUID=1000
+        - PGID=1000
+    restart: unless-stopped
+    # ports:
+    #   - '3306:3306'
+    volumes:
+      - ./mysql/mysql.cnf:/etc/mysql/conf.d/mysql.cnf:ro
+      - ./mysql/data:/var/lib/mysql/:rw
+      - ./mysql/sql:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - TZ=Asia/Shanghai
+  # redis:
+  #   image: redis:5.0.3-alpine
+  #   # ports:
+  #   #   - '6379:6379'
+  #   volumes:
+  #     - ./redis/redis.conf:/etc/redis.conf:ro
+  #   restart: unless-stopped
+  #   entrypoint: ['redis-server', '/etc/redis.conf']
+  #   environment:
+  #     TZ: 'Asia/Shanghai'

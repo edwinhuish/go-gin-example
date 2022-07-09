@@ -7,6 +7,7 @@ require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-ini/ini v1.66.6
+	github.com/gomodule/redigo v2.0.0+incompatible
 	github.com/jinzhu/gorm v1.9.16
 	github.com/robfig/cron v1.2.0
 	github.com/swaggo/files v0.0.0-20220610200504-28940afbdbfe
@@ -54,4 +55,5 @@ replace (
 	github.com/edwinhuish/go-gin-example/models => ./models
 	github.com/edwinhuish/go-gin-example/pkg/setting => ./pkg/setting
 	github.com/edwinhuish/go-gin-example/routers => ./routers
+	github.com/edwinhuish/go-gin-example/service => ./service
 )

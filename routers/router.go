@@ -1,29 +1,37 @@
 package routers
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 
+	_ "github.com/edwinhuish/go-gin-example/docs"
 	"github.com/edwinhuish/go-gin-example/middleware/jwt"
 	"github.com/edwinhuish/go-gin-example/pkg/setting"
+	"github.com/edwinhuish/go-gin-example/pkg/upload"
 	"github.com/edwinhuish/go-gin-example/routers/api"
 	v1 "github.com/edwinhuish/go-gin-example/routers/api/v1"
-    _ "github.com/edwinhuish/go-gin-example/docs"
-    "github.com/swaggo/gin-swagger"
-    "github.com/swaggo/files"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func InitRouter() *gin.Engine {
 	r := gin.New()
 
+	// 静态文件
+	r.StaticFS("/upload/images", http.Dir(upload.GetImageFullPath()))
+
 	r.Use(gin.Logger())
 
 	r.Use(gin.Recovery())
 
-	gin.SetMode(setting.RunMode)
+	gin.SetMode(setting.ServerSetting.RunMode)
 
-    r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	r.GET("/api/auth", api.GetAuth)
+
+	r.POST("/api/upload", api.UploadImage)
 
 	apiv1 := r.Group("/api/v1")
 	apiv1.Use(jwt.JWT())

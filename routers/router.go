@@ -7,6 +7,7 @@ import (
 
 	_ "github.com/edwinhuish/go-gin-example/docs"
 	"github.com/edwinhuish/go-gin-example/middleware/jwt"
+	"github.com/edwinhuish/go-gin-example/pkg/export"
 	"github.com/edwinhuish/go-gin-example/pkg/setting"
 	"github.com/edwinhuish/go-gin-example/pkg/upload"
 	"github.com/edwinhuish/go-gin-example/routers/api"
@@ -20,6 +21,7 @@ func InitRouter() *gin.Engine {
 
 	// 静态文件
 	r.StaticFS("/upload/images", http.Dir(upload.GetImageFullPath()))
+	r.StaticFS("/export", http.Dir(export.GetExcelFullPath()))
 
 	r.Use(gin.Logger())
 
@@ -44,6 +46,10 @@ func InitRouter() *gin.Engine {
 		apiv1.PUT("/tags/:id", v1.EditTag)
 		//删除指定标签
 		apiv1.DELETE("/tags/:id", v1.DeleteTag)
+		//导出标签
+		apiv1.POST("/tags/export", v1.ExportTag)
+		//导入标签
+		apiv1.POST("/tags/import", v1.ImportTag)
 
 		//获取文章列表
 		apiv1.GET("/articles", v1.GetArticles)

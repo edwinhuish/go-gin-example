@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/edwinhuish/go-gin-example/models"
+	"github.com/edwinhuish/go-gin-example/pkg/gredis"
 	"github.com/edwinhuish/go-gin-example/pkg/logging"
 	"github.com/edwinhuish/go-gin-example/pkg/setting"
 	"github.com/edwinhuish/go-gin-example/routers"
@@ -17,9 +18,10 @@ import (
 
 func main() {
 
-    setting.Setup()
-    models.Setup()
-    logging.Setup()
+	setting.Setup()
+	models.Setup()
+	logging.Setup()
+	gredis.Setup()
 
 	router := routers.InitRouter()
 

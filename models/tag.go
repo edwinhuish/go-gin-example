@@ -44,6 +44,11 @@ func AddTag(name string, state int, createdBy string) bool {
 	return true
 }
 
+func AddTagByStruct(tag Tag)bool{
+    db.Create(&tag)
+    return true
+}
+
 func ExistTagByID(id int) bool {
 	var tag Tag
 	db.Select("id").Where("id = ?", id).First(&tag)

@@ -298,7 +298,7 @@ func GenerateArticlePoster(c *gin.Context) {
 	posterName := article_service.GetPosterFlag() + "-" + qrcode.GetQrCodeFileName(qr.URL) + qr.GetQrCodeExt()
 	articlePoster := article_service.NewArticlePoster(posterName, article, qr)
 	articlePosterBgService := article_service.NewArticlePosterBg(
-		"bg.jpg",
+		"images/bg.jpg",
 		articlePoster,
 		&article_service.Rect{
 			X0: 0,

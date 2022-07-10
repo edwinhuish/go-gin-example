@@ -62,4 +62,5 @@ replace (
 	github.com/edwinhuish/go-gin-example/pkg/setting => ./pkg/setting
 	github.com/edwinhuish/go-gin-example/routers => ./routers
 	github.com/edwinhuish/go-gin-example/service => ./service
+	github.com/edwinhuish/go-gin-example/static => ./static
 )

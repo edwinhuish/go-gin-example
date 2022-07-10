@@ -33,11 +33,7 @@ func GetPosterFlag() string {
 }
 
 func (a *ArticlePoster) CheckMergedImage(path string) bool {
-	if file.CheckNotExist(path+a.PosterName) == true {
-		return false
-	}
-
-	return true
+	return !file.CheckNotExist(path + a.PosterName)
 }
 
 func (a *ArticlePoster) OpenMergedImage(path string) (*os.File, error) {
@@ -94,7 +90,7 @@ type DrawText struct {
 }
 
 func (a *ArticlePosterBg) DrawPoster(d *DrawText, fontName string) error {
-	fontSource := setting.AppSetting.RuntimeRootPath + setting.AppSetting.FontSavePath + fontName
+	fontSource := setting.AppSetting.StaticPath + setting.AppSetting.FontSavePath + fontName
 	fontSourceBytes, err := ioutil.ReadFile(fontSource)
 	if err != nil {
 		return err
@@ -147,7 +143,7 @@ func (a *ArticlePosterBg) Generate() (string, string, error) {
 		}
 		defer mergedF.Close()
 
-		bgF, err := file.MustOpen(a.Name, path)
+		bgF, err := file.MustOpen(a.Name, setting.AppSetting.StaticPath)
 		if err != nil {
 			return "", "", err
 		}

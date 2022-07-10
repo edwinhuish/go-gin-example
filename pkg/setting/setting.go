@@ -20,6 +20,8 @@ type App struct {
 	ImageAllowExts []string
 
 	ExportSavePath string
+	QrCodeSavePath string
+	FontSavePath   string
 
 	LogSavePath string
 	LogSaveName string

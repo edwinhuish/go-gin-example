@@ -29,7 +29,8 @@
   },
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [
-    "db:3306"
+    "db:3306",
+    "nginx:80"
   ],
   // Use 'postCreateCommand' to run commands after the container is created.
   // "postCreateCommand": "go version",
